@@ -4,6 +4,16 @@
 Este projeto tem como objetivo desenvolver um sistema simples de *gerenciamento de biblioteca, aplicando conceitos de **Engenharia de Software* como versionamento, testes automatizados, documentação e gestão de tarefas no GitHub.
 
 ---
+## 📊 Gestão do Projeto
+
+Este projeto utiliza *GitHub Projects (Kanban)* para organizar as tarefas:
+
+- *To Do* → backlog inicial.  
+- *In Progress* → tarefas em andamento.  
+- *Done* → tarefas concluídas.  
+
+Todas as Issues são rastreadas e vinculadas ao quadro, garantindo transparência e controle de progresso.
+
 #  Escopo do Projeto
 
 ###  Escopo Incluído
