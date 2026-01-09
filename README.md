@@ -4,6 +4,29 @@
 Este projeto tem como objetivo desenvolver um sistema simples de *gerenciamento de biblioteca, aplicando conceitos de **Engenharia de Software* como versionamento, testes automatizados, documentação e gestão de tarefas no GitHub.
 
 ---
+#  Escopo do Projeto
+
+###  Escopo Incluído
+- Cadastro de livros com título, autor e ano.
+- Listagem completa dos livros cadastrados.
+- Busca de livros por título (case-insensitive).
+- Controle de empréstimo e devolução (status: disponível/emprestado).
+- Testes automatizados para validar funcionalidades básicas.
+- Documentação inicial (README com objetivo, funcionalidades, entrevista e metodologia).
+- Gestão de tarefas via GitHub (Issues, Kanban, Pull Requests).
+
+###  Fora do Escopo (nesta versão inicial)
+- Controle de usuários (quem pegou o livro emprestado).
+- Relatórios avançados (estatísticas de uso, histórico de empréstimos).
+- Interface gráfica ou web (o sistema roda apenas em terminal).
+- Acesso simultâneo por múltiplos usuários.
+- Integração com banco de dados (atualmente usa listas em memória).
+
+###  Possíveis Evoluções Futuras
+- Adicionar controle de usuários e histórico de empréstimos.
+- Criar relatórios e dashboards com estatísticas.
+- Implementar interface web ou desktop.
+- Persistência dos dados em banco de dados.
 
 ## Funcionalidades
 - Cadastro de livros (título, autor, ano).
