@@ -23,9 +23,9 @@ class TestBiblioteca(unittest.TestCase):
 
     def test_buscar_por_titulo(self):
         # Testa se a busca retorna o livro correto
-        resultado = self.bib.buscar_por_titulo("Dom")
-        self.assertEqual(len(resultado), 1)
-        self.assertEqual(resultado[0].titulo, "Dom Casmurro")
+        resultados = self.bib.buscar_por_titulo("Dom")
+        self.assertEqual(len(resultados), 1)
+        self.assertEqual(resultados[0].titulo, "Dom Casmurro")
 
     def test_emprestar_livro(self):
         # Testa se o livro pode ser emprestado
