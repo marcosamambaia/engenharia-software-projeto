@@ -1,4 +1,4 @@
-# ============================================
+
 # Projeto: Gerenciador de Biblioteca
 # Arquivo: main.py
 # ============================================
@@ -8,14 +8,14 @@
 # ============================================
 
 # Classe que representa um livro
+# Classe que representa um livro
 class Livro:
     def __init__(self, titulo, autor, ano):
-        # Atributos básicos do livro
-        self.titulo = titulo
-        self.autor = autor
-        self.ano = ano
-        # Status inicial: todo livro começa como disponível
-        self.status = "disponível"
+        # Inicializa os atributos do livro
+        self.titulo = titulo  # Título do livro
+        self.autor = autor    # Autor do livro
+        self.ano = ano        # Ano de publicação
+        self.status = "disponível"  # Status inicial do livro
 
     def __str__(self):
         # Retorna uma string formatada com as informações do livro
@@ -25,76 +25,113 @@ class Livro:
 # Classe que representa a biblioteca
 class Biblioteca:
     def __init__(self):
-        # Lista que armazena todos os livros cadastrados
+        # Inicializa a lista que armazenará os livros
         self.livros = []
 
     def adicionar_livro(self, livro):
-        # Adiciona um objeto Livro à lista de livros
+        # Adiciona um livro à lista da biblioteca
         self.livros.append(livro)
 
     def listar_livros(self):
-        # Imprime todos os livros cadastrados na biblioteca
-        for livro in self.livros:
-            print(livro)
+        # Lista todos os livros cadastrados
+        if not self.livros:
+            print("Nenhum livro cadastrado.")
+        else:
+            for livro in self.livros:
+                print(livro)
 
     def buscar_por_titulo(self, termo):
-        # Busca livros pelo título (ignora maiúsculas/minúsculas)
+        # Busca livros pelo título, ignorando maiúsculas/minúsculas
         termo = termo.lower()
-        return [livro for livro in self.livros if termo in livro.titulo.lower()]
+        resultados = [livro for livro in self.livros if termo in livro.titulo.lower()]
+        if resultados:
+            for livro in resultados:
+                print(livro)
+        else:
+            print("Nenhum livro encontrado com esse título.")
 
     def emprestar_livro(self, titulo):
-        # Marca um livro como emprestado, se estiver disponível
+        # Empresta um livro se estiver disponível
         for livro in self.livros:
             if livro.titulo.lower() == titulo.lower():
                 if livro.status == "disponível":
                     livro.status = "emprestado"
-                    return True  # Empréstimo realizado com sucesso
+                    print(f"Livro '{livro.titulo}' emprestado com sucesso.")
+                    return
                 else:
-                    return False  # Livro já estava emprestado
-        return None  # Livro não encontrado
+                    print("Livro já está emprestado.")
+                    return
+        print("Livro não encontrado.")
 
     def devolver_livro(self, titulo):
-        # Marca um livro como disponível novamente, se estava emprestado
+        # Devolve um livro se estiver emprestado
         for livro in self.livros:
             if livro.titulo.lower() == titulo.lower():
                 if livro.status == "emprestado":
                     livro.status = "disponível"
-                    return True  # Devolução realizada com sucesso
+                    print(f"Livro '{livro.titulo}' devolvido com sucesso.")
+                    return
                 else:
-                    return False  # Livro não estava emprestado
-        return None  # Livro não encontrado
+                    print("Livro não está emprestado.")
+                    return
+        print("Livro não encontrado.")
 
 
-# ============================================
-# Exemplo de uso (pode ser removido em produção)
-# ============================================
+def menu():
+    # Cria uma instância da biblioteca
+    biblioteca = Biblioteca()
+
+    while True:
+        # Exibe o menu de opções
+        print("\n=== Gerenciador de Biblioteca ===")
+        print("1. Adicionar livro")
+        print("2. Listar livros cadastrados")
+        print("3. Buscar livro por título")
+        print("4. Emprestar livro")
+        print("5. Devolver livro")
+        print("6. Sair")
+
+        opcao = input("Escolha uma opção: ")
+
+        if opcao == "1":
+            # Solicita dados do livro e adiciona à biblioteca
+            titulo = input("Título: ")
+            autor = input("Autor: ")
+            ano = input("Ano: ")
+            livro = Livro(titulo, autor, ano)
+            biblioteca.adicionar_livro(livro)
+            print(f"Livro '{titulo}' adicionado com sucesso.")
+
+        elif opcao == "2":
+            # Lista todos os livros cadastrados
+            print("\nLivros cadastrados:")
+            biblioteca.listar_livros()
+
+        elif opcao == "3":
+            # Busca livros por título
+            termo = input("Digite o título para busca: ")
+            print(f"\nResultados da busca para '{termo}':")
+            biblioteca.buscar_por_titulo(termo)
+
+        elif opcao == "4":
+            # Empresta um livro
+            titulo = input("Título do livro para empréstimo: ")
+            biblioteca.emprestar_livro(titulo)
+
+        elif opcao == "5":
+            # Devolve um livro
+            titulo = input("Título do livro para devolução: ")
+            biblioteca.devolver_livro(titulo)
+
+        elif opcao == "6":
+            # Sai do programa
+            print("Saindo...")
+            break
+
+        else:
+            # Opção inválida
+            print("Opção inválida. Tente novamente.")
+
+
 if __name__ == "__main__":
-    # Criando biblioteca
-    bib = Biblioteca()
-
-    # Criando livros
-    livro1 = Livro("Dom Casmurro", "Machado de Assis", 1899)
-    livro2 = Livro("O Hobbit", "J.R.R. Tolkien", 1937)
-
-    # Adicionando livros
-    bib.adicionar_livro(livro1)
-    bib.adicionar_livro(livro2)
-
-    # Listando livros
-    print(" Lista de livros:")
-    bib.listar_livros()
-
-    # Buscando por título
-    print("\n Busca por 'Dom':")
-    resultado = bib.buscar_por_titulo("Dom")
-    for livro in resultado:
-        print(livro)
-
-    # Empréstimo e devolução
-    print("\n Empréstimo de 'Dom Casmurro':")
-    bib.emprestar_livro("Dom Casmurro")
-    bib.listar_livros()
-
-    print("\n Devolução de 'Dom Casmurro':")
-    bib.devolver_livro("Dom Casmurro")
-    bib.listar_livros()
+    menu()
